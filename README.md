@@ -407,24 +407,7 @@ taskkill /PID <PID> /F
 
 ---
 
-## 📚 Interview Guide
 
-Each phase has a complete guide in the `guide/` folder with:
-- Full concept explanations
-- Architecture decisions
-- 8-10 tricky interview Q&As per phase
-- Key terms to remember
-
-| Guide | Topics Covered |
-|---|---|
-| PHASE_1_SETUP_GUIDE.md | Docker, Zookeeper, Architecture |
-| PHASE_2_FAKER_GUIDE.md | UUID, Master Data, Faker locale |
-| PHASE_3_DATABASE_GUIDE.md | Schema design, Indexes, Views, ACID |
-| PHASE_4_KAFKA_GUIDE.md | Offsets, Consumer groups, Serialization |
-| PHASE_5_AIRFLOW_GUIDE.md | DAG, XCom, TriggerRule, Executors |
-| PHASE_6_DASHBOARD_GUIDE.md | Streamlit cache, Plotly, Deployment |
-
----
 
 ## 👨‍💻 Author
 

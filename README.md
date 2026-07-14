@@ -168,14 +168,6 @@ ecommerce-pipeline/
 ├── 📁 dashboard/
 │   └── app.py                    ← 9-section Streamlit dashboard
 │
-├── 📁 (guides optional)/
-│   ├── PHASE_1_SETUP_GUIDE.md
-│   ├── PHASE_2_FAKER_GUIDE.md
-│   ├── PHASE_3_DATABASE_GUIDE.md
-│   ├── PHASE_4_KAFKA_GUIDE.md
-│   ├── PHASE_5_AIRFLOW_GUIDE.md
-│   └── PHASE_6_DASHBOARD_GUIDE.md
-│
 ├── 📁 assets/
 │   └── images/                   ← Dashboard screenshots
 │
@@ -439,7 +431,6 @@ Each phase has a complete guide in the `guide/` folder with:
 **Jaymin Chavda**
 
 B.E. Computer Science (Data Science) — VGEC, Ahmedabad
-GATE DA 2026 Qualified | CGPA: 8.12
 
 [![Email](https://img.shields.io/badge/Email-jaymin29chavda%40gmail.com-D14836?style=flat&logo=gmail&logoColor=white)](mailto:jaymin29chavda@gmail.com)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-jaymin--chavda-0077B5?style=flat&logo=linkedin&logoColor=white)](https://linkedin.com/in/jaymin-chavda)

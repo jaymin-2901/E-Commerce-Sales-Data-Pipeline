@@ -1,0 +1,79 @@
+# ============================================================
+# docker-compose.yml
+# Spins up ALL infrastructure with one command:
+#   docker-compose up -d
+#
+# Services started:
+#   1. Zookeeper    (Kafka needs this to manage brokers)
+#   2. Kafka Broker (message streaming)
+#   3. PostgreSQL   (structured data storage)
+# ============================================================
+
+version: '3.8'
+
+services:
+
+  # ── Zookeeper ─────────────────────────────────────────────
+  # Kafka uses Zookeeper to coordinate brokers and manage
+  # cluster state, leader election, and configuration.
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.4.0
+    container_name: zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "2181:2181"
+    networks:
+      - pipeline_network
+
+  # ── Kafka Broker ──────────────────────────────────────────
+  # The core message broker.
+  # Producer sends order events → Kafka stores them in topics
+  # Consumer reads from topics → processes and loads to DB
+  kafka:
+    image: confluentinc/cp-kafka:7.4.0
+    container_name: kafka
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+      KAFKA_MESSAGE_MAX_BYTES: 10485760          # 10MB max message size
+    networks:
+      - pipeline_network
+
+  # ── PostgreSQL ────────────────────────────────────────────
+  # Stores all cleaned, transformed e-commerce data.
+  # Tables: customers, products, stores, orders, daily_summary
+  postgres:
+    image: postgres:15
+    container_name: postgres_ecommerce
+    environment:
+      POSTGRES_DB: ecommerce_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres123
+    ports:
+      - "5432:5432"
+    volumes:
+      # Persist data even if container is restarted
+      - postgres_data:/var/lib/postgresql/data
+      # Auto-run schema on first startup
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    networks:
+      - pipeline_network
+
+# ── Shared Network ────────────────────────────────────────
+# All services can talk to each other via this network
+networks:
+  pipeline_network:
+    driver: bridge
+
+# ── Persistent Storage ────────────────────────────────────
+volumes:
+  postgres_data:

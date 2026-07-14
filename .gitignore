@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual env
+venv/
+.venv/
+ENV/
+env/
+
+# Env files
+.env
+.env.*
+
+# Editor / IDE
+.vscode/
+.idea/
+*.iml
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Data / local artifacts (if any)
+*.sqlite
+*.db
+coverage/
+htmlcov/
+.pytest_cache/
+
+# Airflow local
+airflow_home/
+

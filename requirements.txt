@@ -1,0 +1,33 @@
+# ============================================================
+# requirements.txt
+# Install all dependencies with:
+#   pip install -r requirements.txt
+# ============================================================
+
+# ── Data Generation ─────────────────────────────────────────
+faker==24.2.0              # Generate realistic fake data
+
+# ── Kafka ───────────────────────────────────────────────────
+kafka-python==2.0.2        # Kafka producer and consumer
+
+# ── Data Transformation ─────────────────────────────────────
+pandas==2.2.1              # Data cleaning and transformation
+numpy==1.26.4              # Numerical operations
+
+# ── Database ────────────────────────────────────────────────
+psycopg2-binary==2.9.9     # PostgreSQL connector for Python
+sqlalchemy==1.4.52        # ORM and connection pooling
+
+# ── Airflow ─────────────────────────────────────────────────
+apache-airflow[postgres]==2.8.4     # Pipeline orchestration and scheduling
+
+
+# ── Dashboard ───────────────────────────────────────────────
+streamlit==1.32.2          # Interactive web dashboard
+plotly==5.20.0             # Beautiful interactive charts
+altair==5.3.0              # Declarative visualization
+
+# ── Utilities ───────────────────────────────────────────────
+python-dotenv==1.0.1       # Load .env config files
+loguru==0.7.2              # Better logging than print()
+schedule==1.2.1            # Simple job scheduling (alternative to Airflow)
